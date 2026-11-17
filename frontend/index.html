@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>welKome</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/style.css?v=booth13">
+  <link rel="stylesheet" href="/static/fonts/fonts.css?v=booth13">
+  <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@15.1.0/dist/twemoji.min.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id="initial-loader" class="initial-loader"></div>
+
+  <div class="wall" aria-hidden="true">
+    <i class="lamp lamp-a"></i><i class="lamp lamp-b"></i><i class="lamp lamp-c"></i>
+    <div class="wall-ink"></div>
+  </div>
+
+  <div class="app">
+
+    <div class="phone-frame">
+
+      <div class="dynamic-island-container">
+        <div class="dynamic-island">
+          <div class="camera-sensor"></div>
+        </div>
+      </div>
+
+      <section id="screen-loading" class="screen active">
+        <div class="loading-inner">
+          <img src="/static/images/logo.png" alt="welKome" class="app-title-logo">
+          <div id="loading-top-text" class="loading-text-area"></div>
+          <div class="loading-bar-container">
+            <div class="loading-bar-fill"></div>
+          </div>
+          <div id="loading-bottom-text" class="loading-text-area"></div>
+        </div>
+      </section>
+
+      <section id="screen-main" class="screen">
+        <header class="top-bar">
+          <div class="place-label">
+            <span id="place-label-text">장소</span>
+          </div>
+        </header>
+
+        <main class="content content-main">
+          <div class="upload-block">
+            <div class="upload-container">
+              <label for="image-input" class="upload-label">
+
+                <span id="upload-instruction">탭하여 한국의 명소 사진 업로드하기</span>
+                <input type="file" id="image-input" accept="image/*" hidden>
+              </label>
+              <img id="image-preview" class="image-preview" alt="Preview">
+            </div>
+          </div>
+
+          <div id="main-desc-card" class="description-card">
+            <h2 id="desc-title">환영합니다</h2>
+            <p id="desc-text">
+              한국의 명소 사진을 올려주시면<br>장소의 정보와 추천 내용을 얻을 수 있습니다.<br><br>(예시) 경복궁은 서울특별시 종로구 사직로 161에 위치한 조선시대 궁궐 중 하나이자 사적
+              제117호에 등재된 유산입니다.
+            </p>
+          </div>
+
+          <div id="sillok-card" class="description-card" style="display: none;">
+            <h2 id="sillok-title">조선왕조실록</h2>
+            <p id="sillok-text"></p>
+          </div>
+        </main>
+
+        <nav class="bottom-nav">
+          <button class="nav-item active" data-target="main">
+            <img src="/static/images/home.png" class="nav-icon" alt="홈">
+            <span class="nav-label">홈</span>
+          </button>
+
+          <button class="nav-item" data-target="demo">
+            <img src="/static/images/camera.png" class="nav-icon" alt="시연">
+            <span class="nav-label">시연</span>
+          </button>
+
+          <button class="nav-item" data-target="chatbot">
+            <img src="/static/images/chatbot.png" class="nav-icon" alt="챗봇">
+            <span class="nav-label">챗봇</span>
+          </button>
+        </nav>
+      </section>
+      <section id="screen-chatbot" class="screen">
+        <header class="top-bar">
+          <img src="/static/images/siltalk.png" alt="K-챗봇" class="chat-title-image">
+        </header>
+
+        <main class="content chatbot-content">
+          <div id="chat-window" class="chat-window"></div>
+        </main>
+
+        <form id="chat-form" class="chat-input-bar">
+          <input id="chat-input" type="text" placeholder="명소, 맛집, 역사에 대해 물어보세요…" autocomplete="off">
+          <button type="submit">전송</button>
+        </form>
+
+        <nav class="bottom-nav">
+          <button class="nav-item" data-target="main">
+            <img src="/static/images/home.png" class="nav-icon" alt="홈">
+            <span class="nav-label">홈</span>
+          </button>
+          <button class="nav-item" data-target="demo">
+            <img src="/static/images/camera.png" class="nav-icon" alt="시연">
+            <span class="nav-label">시연</span>
+          </button>
+          <button class="nav-item active" data-target="chatbot">
+            <img src="/static/images/chatbot.png" class="nav-icon" alt="챗봇">
+            <span class="nav-label">챗봇</span>
+          </button>
+        </nav>
+      </section>
+      <section id="screen-demo" class="screen">
+        <header class="top-bar">
+          <img src="/static/images/siltalk.png" alt="실록이 시연" class="chat-title-image">
+        </header>
+
+        <main id="demo-scroller" class="content chatbot-content demo-content">
+          <div id="demo-window" class="chat-window"></div>
+        </main>
+
+        <div class="demo-bar">
+          <div id="demo-typing" class="demo-typing" aria-live="polite"></div>
+          <span class="demo-badge">시연 <b id="demo-count"></b></span>
+        </div>
+
+        <nav class="bottom-nav">
+          <button class="nav-item" data-target="main">
+            <img src="/static/images/home.png" class="nav-icon" alt="홈">
+            <span class="nav-label">홈</span>
+          </button>
+          <button class="nav-item active" data-target="demo">
+            <img src="/static/images/camera.png" class="nav-icon" alt="시연">
+            <span class="nav-label">시연</span>
+          </button>
+          <button class="nav-item" data-target="chatbot">
+            <img src="/static/images/chatbot.png" class="nav-icon" alt="챗봇">
+            <span class="nav-label">챗봇</span>
+          </button>
+        </nav>
+      </section>
+      <div class="home-indicator-area">
+        <div class="home-indicator"></div>
+      </div>
+
+    </div>
+    <aside id="pipeline-panel" class="pipeline-panel" aria-label="실시간 검색 과정">
+      <div class="pipeline-topline">
+        <span class="live-label"><i></i>LIVE PIPELINE</span>
+        <span class="topline-end"><span id="pipeline-clock">대기 중</span><button id="pipeline-fullscreen" type="button" aria-label="시연 화면 전체 화면">전체 화면</button></span>
+      </div>
+      <header class="pipeline-heading">
+        <p class="pipeline-eyebrow"><span class="logo-plate"><img src="/static/images/logo.png" alt="welKome"></span>조선왕조실록 AI 실록이</p>
+        <h1 class="sign-title">질문이 답변이 되기까지</h1>
+        <p class="pipeline-intro">실제 실행한 검색 경로와 생성 모델에 전달한 기록을 확인하세요.</p>
+      </header>
+      <div class="ask">
+        <p class="ask-label">방금 들어온 질문</p>
+        <div id="pipeline-question" class="pipeline-question">챗봇에서 질문을 입력하면 여기에 검색 과정이 나타납니다.</div>
+      </div>
+      <div id="pipeline-rail" class="pipeline-rail" aria-label="처리 단계"></div>
+      <div class="idle-guide" aria-hidden="true">
+        <p>궁금한 조선 역사 이야기를<br><em>AI챗봇 실록이에게 질문</em>해보세요.</p>
+        <p class="idle-sub">조선왕조실록 데이터를 바탕으로 <em>실시간 답변을 확인</em>하며,<br>방대한 역사 기록과 인공지능이 새롭게 만나는 순간을 경험해보세요!</p>
+      </div>
+      <div class="pipeline-grid">
+        <section class="pipeline-events board"><h2>처리 타임라인 <span id="pipeline-status" role="status">READY</span></h2><ol id="pipeline-events"></ol></section>
+        <section class="pipeline-records board"><h2 id="pipeline-records-title">검색된 실록 기록</h2><p id="pipeline-records-note">검색이 실행되면 실제 기록 카드가 나타납니다.</p><div id="pipeline-records"></div></section>
+      </div>
+      <footer class="pipeline-footer">실행 이벤트 기준 · 질문에 따라 검색 경로가 달라집니다 · 순위 통합: RRF</footer>
+    </aside>
+  </div>
+  <script src="/static/pipeline.js?v=booth13"></script>
+  <script src="/static/demo.js?v=booth13"></script>
+  <script src="/static/script.js?v=booth13"></script>
+  <script>
+    function applyTwemoji(node) {
+      twemoji.parse(node || document.body, {
+        folder: 'svg',
+        ext: '.svg',
+        base: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/'
+      });
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      applyTwemoji(document.body);
+      const observer = new MutationObserver(muts => {
+        muts.forEach(m => m.addedNodes.forEach(n => {
+          if (n.nodeType === 1) applyTwemoji(n);
+        }));
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    });
+  </script>
+</body>
+
+</html>
